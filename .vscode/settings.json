@@ -1,0 +1,10 @@
+{
+    "makefile.extensionOutputFolder": "./.vscode",
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/home/aric/Documents/cpp-example-project",
+            "binaryPath": "/home/aric/Documents/cpp-example-project/test",
+            "binaryArgs": []
+        }
+    ]
+}

@@ -1,0 +1,1 @@
+#define SIMPLEMESSAGE "Hello World!\n"
