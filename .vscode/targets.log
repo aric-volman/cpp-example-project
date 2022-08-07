@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Aug  6 12:52:16 2022
+# Make data base, printed on Sat Aug  6 16:22:31 2022
 
 # Variables
 
@@ -73,7 +73,6 @@ LANG = C
 # environment
 XAUTHORITY = /home/aric/.Xauthority
 # default
- 
 .LOADED := 
 # default
 .INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
@@ -171,6 +170,7 @@ VSCODE_LOG_NATIVE = false
 CSF_StandardLiteDefaults = /usr/share/opencascade/resources/StdResource
 # environment
 CSF_STEPDefaults = /usr/share/opencascade/resources/XSTEPResource
+ 
 # environment
 LC_TELEPHONE = en_US.UTF-8
 # automatic
@@ -282,7 +282,7 @@ KDE_FULL_SESSION = true
 # environment
 LC_IDENTIFICATION = en_US.UTF-8
 # variable set hash-table stats:
-# Load=135/1024=13%, Rehash=0, Collisions=17/169=10%
+# Load=135/1024=13%, Rehash=0, Collisions=17/170=10%
 
 # Pattern-specific Variable Values
 
@@ -290,9 +290,9 @@ LC_IDENTIFICATION = en_US.UTF-8
 
 # Directories
 
-# . (device 37, inode 2967735): 10 files, no impossibilities.
+# . (device 37, inode 2967735): 12 files, no impossibilities.
 
-# 10 files, no impossibilities in 1 directories.
+# 12 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -323,9 +323,10 @@ compile:
 # automatic
 # | := 
 # variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=2/12=17%
+# Load=8/32=25%, Rehash=0, Collisions=3/13=23%
 #  recipe to execute (from 'makefile', line 6):
-	$(CC) -o test test.cpp
+	$(CC) -o server server.cpp
+	$(CC) -o client client.cpp
 
 # Not a target:
 .DEFAULT:
@@ -340,12 +341,12 @@ all: compile
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/4=0%
+# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
 
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-06 12:52:15.032606649
+#  Last modified 2022-08-06 16:22:26.295623488
 #  File has been updated.
 #  Successfully updated.
 
@@ -363,12 +364,12 @@ makefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 16 / storage = 138 B / avg = 8 B
-# current buf: size = 8162 B / used = 138 B / count = 16 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 18 / storage = 166 B / avg = 9 B
+# current buf: size = 8162 B / used = 166 B / count = 18 / avg = 9 B
 
-# strcache performance: lookups = 25 / hit rate = 36%
+# strcache performance: lookups = 27 / hit rate = 33%
 # hash-table stats:
-# Load=16/8192=0%, Rehash=0, Collisions=0/25=0%
-# Finished Make data base on Sat Aug  6 12:52:16 2022
+# Load=18/8192=0%, Rehash=0, Collisions=0/27=0%
+# Finished Make data base on Sat Aug  6 16:22:31 2022
 
  

@@ -1,5 +1,6 @@
 make all --dry-run --keep-going --print-directory
 make: Entering directory '/home/aric/Documents/cpp-example-project'
-clang++ -o test test.cpp
+clang++ -o server server.cpp
+clang++ -o client client.cpp
 make: Leaving directory '/home/aric/Documents/cpp-example-project'
  
