@@ -9,6 +9,14 @@
         {
             "cwd": "/home/aric/Documents/cpp-example-project",
             "binaryPath": "/home/aric/Documents/cpp-example-project/server",
+            "binaryArgs": [
+                "8080",
+                "127.0.0.1"
+            ]
+        },
+        {
+            "cwd": "/home/aric/Documents/cpp-example-project",
+            "binaryPath": "/home/aric/Documents/cpp-example-project/server",
             "binaryArgs": []
         }
     ],
