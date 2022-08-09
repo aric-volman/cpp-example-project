@@ -1,9 +1,23 @@
-make --dry-run --always-make --keep-going --print-directory
+make --dry-run --keep-going --print-directory
 make: Entering directory '/home/aric/Documents/cpp-example-project'
-clang++ -c -fPIC serverclass.cpp
-clang++ -shared serverclass.o -o libserverclass.so
-clang++ -c server.cpp
-clang++ -o client.o client.cpp
-clang++ -Wall -o server server.o -rpath ./ -L./ -lserverclass
+cd lib;\
+clang++ -c -fPIC ./src/serverclass.cpp;\
+clang++ -shared serverclass.o -o libserverclass.so;\
+clang++ -c -fPIC ./src/clientclass.cpp;\
+clang++ -shared clientclass.o -o libclientclass.so;\
+rm serverclass.o;\
+rm clientclass.o;\
+
+cd src;\
+clang++ -c server.cpp -o ../server.o;\
+clang++ -c client.cpp -o ../client.o;\
+
+mkdir -p bin
+ 
+clang++ -Wall -o ./bin/server server.o -rpath /home/aric/Documents/cpp-example-project/lib -L./lib -lserverclass
+clang++ -Wall -o ./bin/client client.o -rpath /home/aric/Documents/cpp-example-project/lib -L./lib -lclientclass
+rm server.o;\
+rm client.o;\
+
 make: Leaving directory '/home/aric/Documents/cpp-example-project'
  

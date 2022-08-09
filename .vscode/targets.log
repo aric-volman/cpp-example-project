@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Aug  8 18:55:38 2022
+# Make data base, printed on Tue Aug  9 15:51:12 2022
 
 # Variables
 
@@ -77,7 +77,7 @@ MAKEFLAGS = pqrR
 # makefile
 CURDIR := /home/aric/Documents/cpp-example-project
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
@@ -101,7 +101,7 @@ MAKEFILE_LIST := makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 2342
+VSCODE_PID = 17450
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
@@ -111,7 +111,7 @@ CSF_XSMessage = /usr/share/opencascade/resources/XSMessage
 # environment
 DRAWDEFAULT = /usr/share/opencascade/resources/DrawResources/DrawDefault
 # environment
-SESSION_MANAGER = local/aric-ms7b87:@/tmp/.ICE-unix/685,unix/aric-ms7b87:/tmp/.ICE-unix/685
+SESSION_MANAGER = local/aric-ms7b87:@/tmp/.ICE-unix/799,unix/aric-ms7b87:/tmp/.ICE-unix/799
 # automatic
 *F = $(notdir $*)
 # environment
@@ -123,6 +123,7 @@ CSF_SHMessage = /usr/share/opencascade/resources/SHMessage
 # environment
 DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # automatic
+ 
 <D = $(patsubst %/,%,$(dir $<))
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
@@ -155,7 +156,7 @@ MOTD_SHOWN = pam
 # environment
 LC_TIME = en_US.UTF-8
 # environment
-INVOCATION_ID = fd0ddb234a8f432eb37ecfd6355ff7fb
+INVOCATION_ID = 7a691c078a2a4bef8f63efb1cc579b50
 # environment
 CSF_StandardLiteDefaults = /usr/share/opencascade/resources/StdResource
 # environment
@@ -195,7 +196,7 @@ XDG_VTNR = 1
 # makefile
 .DEFAULT_GOAL := all
 # environment
-SYSTEMD_EXEC_PID = 721
+SYSTEMD_EXEC_PID = 873
 # makefile (from 'makefile', line 2)
 RM := rm
 # environment
@@ -213,7 +214,7 @@ MAKE_VERSION := 4.3
 # environment
 KDE_SESSION_UID = 1000
 # environment
-MANAGERPID = 621
+MANAGERPID = 632
 # environment
 LC_MEASUREMENT = en_US.UTF-8
 # environment
@@ -229,7 +230,7 @@ CSF_DrawPluginDefaults = /usr/share/opencascade/resources/DrawResources
 # environment
 CSF_IGESDefaults = /usr/share/opencascade/resources/XSTEPResource
 # environment
-JOURNAL_STREAM = 8:22335
+JOURNAL_STREAM = 8:23484
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -273,7 +274,7 @@ KDE_FULL_SESSION = true
 # environment
 LC_IDENTIFICATION = en_US.UTF-8
 # variable set hash-table stats:
-# Load=131/1024=13%, Rehash=0, Collisions=17/166=10%
+# Load=131/1024=13%, Rehash=0, Collisions=19/170=11%
 
 # Pattern-specific Variable Values
 
@@ -281,9 +282,9 @@ LC_IDENTIFICATION = en_US.UTF-8
 
 # Directories
 
-# . (device 26, inode 2967735): 21 files, no impossibilities.
+# . (device 38, inode 2967735): 11 files, no impossibilities.
 
-# 21 files, no impossibilities in 1 directories.
+# 11 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -295,10 +296,11 @@ compile:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
- 
-#  recipe to execute (from 'makefile', line 11):
-	$(CC) -c server.cpp
-	$(CC) -o client.o client.cpp
+#  recipe to execute (from 'makefile', line 16):
+	cd src;\
+	$(CC) -c server.cpp -o ../server.o;\
+	$(CC) -c client.cpp -o ../client.o;\
+
 
 # Not a target:
 .DEFAULT:
@@ -313,14 +315,19 @@ all: libs compile link
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
+# Load=0/32=0%, Rehash=0, Collisions=0/9=0%
 
 link:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'makefile', line 15):
-	$(CC) -Wall -o server server.o -rpath ./ -L./ -lserverclass
+#  recipe to execute (from 'makefile', line 21):
+	mkdir -p bin
+	$(CC) -Wall -o ./bin/server server.o -rpath /home/aric/Documents/cpp-example-project/lib -L./lib -lserverclass
+	$(CC) -Wall -o ./bin/client client.o -rpath /home/aric/Documents/cpp-example-project/lib -L./lib -lclientclass
+	$(RM) server.o;\
+	$(RM) client.o;\
+
 
 libs:
 #  Implicit rule search has not been done.
@@ -345,15 +352,21 @@ libs:
 # automatic
 # | := 
 # variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=3/13=23%
+# Load=8/32=25%, Rehash=0, Collisions=5/17=29%
 #  recipe to execute (from 'makefile', line 7):
-	$(CC) -c -fPIC serverclass.cpp
-	$(CC) -shared serverclass.o -o libserverclass.so
+	cd lib;\
+	$(CC) -c -fPIC ./src/serverclass.cpp;\
+	$(CC) -shared serverclass.o -o libserverclass.so;\
+	$(CC) -c -fPIC ./src/clientclass.cpp;\
+	$(CC) -shared clientclass.o -o libclientclass.so;\
+	$(RM) serverclass.o;\
+	$(RM) clientclass.o;\
+
 
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-08 18:42:34.837779166
+#  Last modified 2022-08-09 15:51:10.566730821
 #  File has been updated.
 #  Successfully updated.
 
@@ -371,12 +384,12 @@ makefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 29 / storage = 291 B / avg = 10 B
-# current buf: size = 8162 B / used = 291 B / count = 29 / avg = 10 B
+# strcache buffers: 1 (0) / strings = 19 / storage = 155 B / avg = 8 B
+# current buf: size = 8162 B / used = 155 B / count = 19 / avg = 8 B
 
-# strcache performance: lookups = 42 / hit rate = 30%
+# strcache performance: lookups = 32 / hit rate = 40%
 # hash-table stats:
-# Load=29/8192=0%, Rehash=0, Collisions=0/42=0%
-# Finished Make data base on Mon Aug  8 18:55:38 2022
+# Load=19/8192=0%, Rehash=0, Collisions=0/32=0%
+# Finished Make data base on Tue Aug  9 15:51:12 2022
 
  
