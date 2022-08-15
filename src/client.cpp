@@ -18,29 +18,31 @@ int main (int argc, char *argv[]) {
     
     // Connect to server
     try {
-        int e = client.connectToServer();
-        if (e < 0) {throw e;}
-    } catch (int ret) {
-        return ret;
+        client.connectToServer();
+    } catch (std::runtime_error ret) {
+        std::cerr << ret.what() << " with errno -1\n";
+        return -1;
     }
-    // int sock = client.getSock();
 
-    char buf[4096];
     std::string userInput;
 
     do {
         std::cout << "> ";
         std::getline(std::cin, userInput);
         // Send string to server
-        int sendRes = send(client.getSock(), userInput.c_str(), userInput.size() + 1, 0);
-        if (sendRes == -1) {
-            std::cerr << "Sending failed with errno " << -1 << "\n";
-            continue;
+        try {
+            client.sendToServer(userInput);
+        } catch (std::runtime_error ret) {
+            std::cerr << ret.what() << " with errno -1\n";
         }
         // Recieve response
-        memset(buf, 0, 4096);
-        int bytes = recv(client.getSock(), buf, 4096, 0);
-        std::cout << "Server: " << std::string(buf, bytes) << "\r\n";
+        try {
+            client.receive();
+        } catch (std::runtime_error ret) {
+            std::cerr << ret.what() << " with errno -1\n";
+            break;
+        }
+        std::cout << "Server: " << std::string(client.getBuf(), client.getBytes()) << "\r\n";
     } while (true);
 
     // Close the socket when we're done

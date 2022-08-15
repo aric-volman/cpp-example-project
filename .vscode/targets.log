@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Aug  9 15:51:12 2022
+# Make data base, printed on Sun Aug 14 19:08:25 2022
 
 # Variables
 
@@ -59,7 +59,7 @@ XDG_DATA_DIRS = /home/aric/.local/share/flatpak/exports/share:/var/lib/flatpak/e
 # automatic
 %F = $(notdir $%)
 # environment
-VSCODE_CODE_CACHE_PATH = /home/aric/.config/Code/CachedData/da76f93349a72022ca4670c1b84860304616aaa2
+VSCODE_CODE_CACHE_PATH = /home/aric/.config/Code/CachedData/6d9b74a70ca9c7733b29f0456fd8195364076dda
 # environment
 XDG_SESSION_PATH = /org/freedesktop/DisplayManager/Session1
 # environment
@@ -77,7 +77,7 @@ MAKEFLAGS = pqrR
 # makefile
 CURDIR := /home/aric/Documents/cpp-example-project
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
@@ -101,7 +101,7 @@ MAKEFILE_LIST := makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 17450
+VSCODE_PID = 5310
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
@@ -111,9 +111,11 @@ CSF_XSMessage = /usr/share/opencascade/resources/XSMessage
 # environment
 DRAWDEFAULT = /usr/share/opencascade/resources/DrawResources/DrawDefault
 # environment
-SESSION_MANAGER = local/aric-ms7b87:@/tmp/.ICE-unix/799,unix/aric-ms7b87:/tmp/.ICE-unix/799
+SESSION_MANAGER = local/aric-ms7b87:@/tmp/.ICE-unix/700,unix/aric-ms7b87:/tmp/.ICE-unix/700
 # automatic
 *F = $(notdir $*)
+# environment
+EM_CONFIG = /usr/lib/emsdk/.emscripten
 # environment
 QT_QPA_PLATFORMTHEME = qt5ct
 # environment
@@ -123,7 +125,6 @@ CSF_SHMessage = /usr/share/opencascade/resources/SHMessage
 # environment
 DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # automatic
- 
 <D = $(patsubst %/,%,$(dir $<))
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
@@ -142,7 +143,9 @@ MAKELEVEL := 0
 # default
 MAKE = $(MAKE_COMMAND)
 # environment
-PATH = /usr/local/sbin:/usr/local/bin:/usr/bin:/var/lib/flatpak/exports/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin
+PATH = /usr/lib/emsdk:/usr/lib/emsdk/upstream/emscripten:/usr/lib/emsdk/node/14.18.2_64bit/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/var/lib/flatpak/exports/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin
+# environment
+EMSDK_NODE = /usr/lib/emsdk/node/14.18.2_64bit/bin/node
 # default
 MAKEFILES := 
 # environment
@@ -156,7 +159,7 @@ MOTD_SHOWN = pam
 # environment
 LC_TIME = en_US.UTF-8
 # environment
-INVOCATION_ID = 7a691c078a2a4bef8f63efb1cc579b50
+INVOCATION_ID = 6e67686254ed4140b3ece0568bcdf1da
 # environment
 CSF_StandardLiteDefaults = /usr/share/opencascade/resources/StdResource
 # environment
@@ -192,11 +195,13 @@ LOGNAME = aric
 # environment
 CSF_LANGUAGE = us
 # environment
+EMSDK = /usr/lib/emsdk
+# environment
 XDG_VTNR = 1
 # makefile
 .DEFAULT_GOAL := all
 # environment
-SYSTEMD_EXEC_PID = 873
+SYSTEMD_EXEC_PID = 738
 # makefile (from 'makefile', line 2)
 RM := rm
 # environment
@@ -214,7 +219,7 @@ MAKE_VERSION := 4.3
 # environment
 KDE_SESSION_UID = 1000
 # environment
-MANAGERPID = 632
+MANAGERPID = 628
 # environment
 LC_MEASUREMENT = en_US.UTF-8
 # environment
@@ -230,7 +235,7 @@ CSF_DrawPluginDefaults = /usr/share/opencascade/resources/DrawResources
 # environment
 CSF_IGESDefaults = /usr/share/opencascade/resources/XSTEPResource
 # environment
-JOURNAL_STREAM = 8:23484
+JOURNAL_STREAM = 8:24640
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -244,7 +249,7 @@ ELECTRON_RUN_AS_NODE = 1
 # environment
 DRAWHOME = /usr/share/opencascade/resources/DrawResources
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-91208303-1.70.0-main.sock
+VSCODE_IPC_HOOK = /run/user/1000/vscode-91208303-1.70.1-main.sock
 # environment
 XDG_SESSION_ID = 2
 # environment
@@ -261,6 +266,8 @@ QT_AUTO_SCREEN_SCALE_FACTOR = 0
 VSCODE_CLI = 1
 # environment
 ELECTRON_NO_ATTACH_CONSOLE = 1
+# makefile (from 'makefile', line 3)
+CXXFLAGS = -Wall -O3
 # environment
 CSF_StandardDefaults = /usr/share/opencascade/resources/StdResource
 # environment
@@ -270,11 +277,12 @@ KDE_SESSION_VERSION = 5
 # makefile (from 'makefile', line 1)
 CC := clang++
 # environment
+ 
 KDE_FULL_SESSION = true
 # environment
 LC_IDENTIFICATION = en_US.UTF-8
 # variable set hash-table stats:
-# Load=131/1024=13%, Rehash=0, Collisions=19/170=11%
+# Load=135/1024=13%, Rehash=0, Collisions=19/178=11%
 
 # Pattern-specific Variable Values
 
@@ -282,9 +290,9 @@ LC_IDENTIFICATION = en_US.UTF-8
 
 # Directories
 
-# . (device 38, inode 2967735): 11 files, no impossibilities.
+# . (device 39, inode 2967735): 10 files, no impossibilities.
 
-# 11 files, no impossibilities in 1 directories.
+# 10 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -296,10 +304,10 @@ compile:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'makefile', line 16):
+#  recipe to execute (from 'makefile', line 17):
 	cd src;\
-	$(CC) -c server.cpp -o ../server.o;\
-	$(CC) -c client.cpp -o ../client.o;\
+	$(CC) $(CXXFLAGS) -c server.cpp -o ../server.o;\
+	$(CC) $(CXXFLAGS) -c client.cpp -o ../client.o;\
 
 
 # Not a target:
@@ -315,16 +323,16 @@ all: libs compile link
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/9=0%
+# Load=0/32=0%, Rehash=0, Collisions=0/13=0%
 
 link:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'makefile', line 21):
+#  recipe to execute (from 'makefile', line 22):
 	mkdir -p bin
-	$(CC) -Wall -o ./bin/server server.o -rpath /home/aric/Documents/cpp-example-project/lib -L./lib -lserverclass
-	$(CC) -Wall -o ./bin/client client.o -rpath /home/aric/Documents/cpp-example-project/lib -L./lib -lclientclass
+	$(CC) $(CXXFLAGS) -o ./bin/server server.o -rpath /home/aric/Documents/cpp-example-project/lib -L./lib -lserverclass
+	$(CC) $(CXXFLAGS) -o ./bin/client client.o -rpath /home/aric/Documents/cpp-example-project/lib -L./lib -lclientclass
 	$(RM) server.o;\
 	$(RM) client.o;\
 
@@ -352,13 +360,13 @@ libs:
 # automatic
 # | := 
 # variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=5/17=29%
-#  recipe to execute (from 'makefile', line 7):
+# Load=8/32=25%, Rehash=0, Collisions=5/21=24%
+#  recipe to execute (from 'makefile', line 8):
 	cd lib;\
-	$(CC) -c -fPIC ./src/serverclass.cpp;\
-	$(CC) -shared serverclass.o -o libserverclass.so;\
-	$(CC) -c -fPIC ./src/clientclass.cpp;\
-	$(CC) -shared clientclass.o -o libclientclass.so;\
+	$(CC) $(CXXFLAGS) -c -fPIC ./src/serverclass.cpp;\
+	$(CC) $(CXXFLAGS) -shared serverclass.o -o libserverclass.so;\
+	$(CC) $(CXXFLAGS) -c -fPIC ./src/clientclass.cpp;\
+	$(CC) $(CXXFLAGS) -shared clientclass.o -o libclientclass.so;\
 	$(RM) serverclass.o;\
 	$(RM) clientclass.o;\
 
@@ -366,7 +374,7 @@ libs:
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-09 15:51:10.566730821
+#  Last modified 2022-08-13 20:26:14.458274823
 #  File has been updated.
 #  Successfully updated.
 
@@ -384,12 +392,12 @@ makefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 19 / storage = 155 B / avg = 8 B
-# current buf: size = 8162 B / used = 155 B / count = 19 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 18 / storage = 137 B / avg = 7 B
+# current buf: size = 8162 B / used = 137 B / count = 18 / avg = 7 B
 
-# strcache performance: lookups = 32 / hit rate = 40%
+# strcache performance: lookups = 31 / hit rate = 41%
 # hash-table stats:
-# Load=19/8192=0%, Rehash=0, Collisions=0/32=0%
-# Finished Make data base on Tue Aug  9 15:51:12 2022
+# Load=18/8192=0%, Rehash=0, Collisions=0/31=0%
+# Finished Make data base on Sun Aug 14 19:08:25 2022
 
  

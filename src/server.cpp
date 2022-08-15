@@ -2,6 +2,7 @@
 
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <stdexcept>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netdb.h>
@@ -14,60 +15,58 @@
 #include "../lib/src/serverclass.hpp"
 
 int main (int argc, char *argv[]) {
-    serverclass server = serverclass(std::stoi(std::string(argv[1])), std::string(argv[2]));
+
+    if (argc != 3) {
+        throw std::range_error("Not enough args");
+    }
+
+    int port = std::stoi(std::string(argv[1]));
+    std::string ipaddr = std::string(argv[2]);
+
+    serverclass server = serverclass(port, ipaddr);
 
     // Initialize custom message
     std::string messageToSendBack = "recieved.";
     try {
-        int e = server.listenAndConnect();
-        if (e < 0) {throw e;};
-    } catch (int ret) {
-        return ret;
+        server.listenAndConnect();
+    } catch (std::runtime_error ret) {
+        std::cerr << ret.what() << " with errno -1\n";
+        return -1;
     }
 
-    // int sock = server.getClientSock();
-
-    int bytes;
-
     // Display message
-    char buf[4096];
-    while(true) {
-        // Clear the buffer
-        memset(buf, 0, 4096);
 
+    while(true) {
+        // Wait for the message & display
         try {
-            // Wait for the message & display
-            bytes = recv(server.getClientSock(), buf, 4096, 0);
-            if (bytes == -1) {
-                std::cerr << "Connection failed with errno " << -1 << "\n";
-                throw bytes;
-            } else if (bytes == 0) {
-                std::cerr << "Client disconnected with errno " << 0 << "\n";
-                throw bytes;
-            }
-        } catch (int ret) {
+            server.receive();
+        } catch (std::runtime_error ret) {
+            std::cerr << ret.what() << " with errno -1\n";
+        }
+        if (server.getBytes() == 0 || server.getBytes() == -1) {
             while (true) {
                 // Close current socket
                 close(server.getClientSock());
                 // Connect back
                 try {
                     int e = server.listenAndConnect();
-                    if (e < 0) {throw e;};
                     if (e == 0) {break;};
-                } catch (int ret) {
-                    return ret;
+                } catch (std::runtime_error ret) {
+                    std::cerr << ret.what() << " with errno -1\n";
+                    break;
                 }
             }
+        } else if (!(server.getBytes() == 0 || server.getBytes() == -1)) {
+            std::string recieved = std::string(server.getBuf(), 0, server.getBytes());
+            
+            if ((recieved == "Quit") || (recieved == "quit")) {
+                std::cout << "Quit recieved, closing...\r\n";
+                break;
+            }
+            std::cout << "Received from server: " << recieved << "\r\n";
+            // Send back the message
+            send(server.getClientSock(), messageToSendBack.c_str(), messageToSendBack.size() + 1, 0);
         }
-        std::string recieved = std::string(buf, 0, bytes);
-        
-        if ((recieved == "Quit") || (recieved == "quit")) {
-            std::cout << "Quit recieved, closing...\r\n";
-            break;
-        }
-        std::cout << "Received from server: " << recieved << "\r\n";
-        // Send back the message
-        send(server.getClientSock(), messageToSendBack.c_str(), messageToSendBack.size() + 1, 0);
     }
 
     // Close the socket when we're done

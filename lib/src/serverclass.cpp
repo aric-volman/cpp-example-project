@@ -2,6 +2,7 @@
 
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <stdexcept>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netdb.h>
@@ -26,13 +27,32 @@ int serverclass::getClientSock() {
     return clientSock;
 }
 
+char* serverclass::getBuf() {
+    return buf;
+}
+
+int serverclass::getBytes() {
+    return bytes;
+}
+
+int serverclass::receive() {
+    // Clear the buffer
+    memset(buf, 0, 4096);
+    bytes = recv(getClientSock(), buf, 4096, 0);
+    if (bytes == -1) {
+        throw std::runtime_error("Connection failed");
+    }
+    if (bytes == 0) {
+        throw std::runtime_error("Client disconnected");
+    }
+    return 0;
+}
 int serverclass::listenAndConnect() {
     // Create listening socket
     listeningSock = socket(AF_INET, SOCK_STREAM, 0);
     
     if (listeningSock == -1) {
-        std::cerr << "Listening socket creation failed with errno " << -1 << "\n";
-        return -1;
+        throw std::runtime_error("Listening socket creation failed");
     }
 
     // Bind socket to address and port
@@ -42,14 +62,12 @@ int serverclass::listenAndConnect() {
     inet_pton(AF_INET, ipaddr.c_str(), &hint.sin_addr);
 
     if (bind(listeningSock, (struct sockaddr*)&hint, sizeof(hint)) == -1) {
-        std::cerr << "Port binding failed with errno " << -2 << "\n";
-        return -2;
+        throw std::runtime_error("Port binding failed");
     }
 
     // Listen to the socket
     if (listen(listeningSock, SOMAXCONN) == -1) {
-        std::cerr << "Socket listening failed with errno " << -3 << "\n";
-        return -3;
+        throw std::runtime_error("Socket listening failed");
     }
 
     sockaddr_in client;
@@ -61,8 +79,7 @@ int serverclass::listenAndConnect() {
     clientSock = accept(listeningSock, (struct sockaddr*)&client, &clientSize);
     
     if (clientSock == -1) {
-        std::cerr << "Client connection failed with errno " << -4 << "\n";
-        return -4;
+        throw std::runtime_error("Client connection failed");
     }
 
     close(listeningSock);

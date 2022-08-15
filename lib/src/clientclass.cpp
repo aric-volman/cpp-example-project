@@ -22,12 +22,39 @@ int clientclass::getSock() {
     return sock;
 }
 
-int clientclass::connectToServer() {
+int clientclass::getBytes() {
+    return bytes;
+}
+
+char* clientclass::getBuf() {
+    return buf;
+}
+
+void clientclass::receive() {
+    // Clear the buffer
+    memset(buf, 0, 4096);
+    bytes = recv(sock, buf, 4096, 0);
+    if (bytes == -1) {
+        throw std::runtime_error("Connection failed");
+    }
+    if (bytes == 0) {
+        throw std::runtime_error("Server disconnected");
+    }
+}
+
+void clientclass::sendToServer(std::string input) {
+    // Send string to server
+    int sendRes = send(sock, input.c_str(), input.size() + 1, 0);
+    if (sendRes == -1) {
+        throw std::runtime_error("Sending failed");
+    }
+}
+
+void clientclass::connectToServer() {
     // Create a socket
     sock = socket(AF_INET, SOCK_STREAM, 0);
     if (sock == -1) {
-        std::cerr << "Socket creation failed with errno " << -1 << "\n";
-        return -1;
+        throw std::runtime_error("Socket creation failed");
     }
 
     // Create hint
@@ -39,9 +66,6 @@ int clientclass::connectToServer() {
     // Connect to the server
     int connectRes = connect(sock, (struct sockaddr*)&hint, sizeof(hint));
     if (connectRes == -1) {
-        std::cerr << "Connection failed with errno " << -1 << "\n";
-        return -1;
+        throw std::runtime_error("Connection failed");
     }
-
-    return 0;
 }
