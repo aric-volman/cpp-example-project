@@ -30,6 +30,10 @@ char* clientclass::getBuf() {
     return buf;
 }
 
+void clientclass::closeConnection() {
+    close(sock);
+}
+
 void clientclass::receive() {
     // Clear the buffer
     memset(buf, 0, 4096);

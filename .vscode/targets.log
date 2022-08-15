@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Aug 14 19:08:25 2022
+# Make data base, printed on Mon Aug 15 16:32:27 2022
 
 # Variables
 
@@ -101,7 +101,7 @@ MAKEFILE_LIST := makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 5310
+VSCODE_PID = 7254
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
@@ -111,7 +111,7 @@ CSF_XSMessage = /usr/share/opencascade/resources/XSMessage
 # environment
 DRAWDEFAULT = /usr/share/opencascade/resources/DrawResources/DrawDefault
 # environment
-SESSION_MANAGER = local/aric-ms7b87:@/tmp/.ICE-unix/700,unix/aric-ms7b87:/tmp/.ICE-unix/700
+SESSION_MANAGER = local/aric-ms7b87:@/tmp/.ICE-unix/694,unix/aric-ms7b87:/tmp/.ICE-unix/694
 # automatic
 *F = $(notdir $*)
 # environment
@@ -159,7 +159,7 @@ MOTD_SHOWN = pam
 # environment
 LC_TIME = en_US.UTF-8
 # environment
-INVOCATION_ID = 6e67686254ed4140b3ece0568bcdf1da
+INVOCATION_ID = 4b34588bf41e415baa8b79a5ebca120c
 # environment
 CSF_StandardLiteDefaults = /usr/share/opencascade/resources/StdResource
 # environment
@@ -201,7 +201,7 @@ XDG_VTNR = 1
 # makefile
 .DEFAULT_GOAL := all
 # environment
-SYSTEMD_EXEC_PID = 738
+SYSTEMD_EXEC_PID = 730
 # makefile (from 'makefile', line 2)
 RM := rm
 # environment
@@ -219,7 +219,7 @@ MAKE_VERSION := 4.3
 # environment
 KDE_SESSION_UID = 1000
 # environment
-MANAGERPID = 628
+MANAGERPID = 622
 # environment
 LC_MEASUREMENT = en_US.UTF-8
 # environment
@@ -235,7 +235,7 @@ CSF_DrawPluginDefaults = /usr/share/opencascade/resources/DrawResources
 # environment
 CSF_IGESDefaults = /usr/share/opencascade/resources/XSTEPResource
 # environment
-JOURNAL_STREAM = 8:24640
+JOURNAL_STREAM = 8:23753
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -277,7 +277,6 @@ KDE_SESSION_VERSION = 5
 # makefile (from 'makefile', line 1)
 CC := clang++
 # environment
- 
 KDE_FULL_SESSION = true
 # environment
 LC_IDENTIFICATION = en_US.UTF-8
@@ -290,7 +289,7 @@ LC_IDENTIFICATION = en_US.UTF-8
 
 # Directories
 
-# . (device 39, inode 2967735): 10 files, no impossibilities.
+# . (device 26, inode 2967735): 10 files, no impossibilities.
 
 # 10 files, no impossibilities in 1 directories.
 
@@ -398,6 +397,6 @@ makefile:
 # strcache performance: lookups = 31 / hit rate = 41%
 # hash-table stats:
 # Load=18/8192=0%, Rehash=0, Collisions=0/31=0%
-# Finished Make data base on Sun Aug 14 19:08:25 2022
+# Finished Make data base on Mon Aug 15 16:32:27 2022
 
  

@@ -12,6 +12,7 @@ class clientclass {
         void connectToServer();
         void sendToServer(std::string input);
         void receive();
+        void closeConnection();
         int getSock();
         int getBytes();
         char* getBuf();

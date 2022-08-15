@@ -35,6 +35,10 @@ int serverclass::getBytes() {
     return bytes;
 }
 
+void serverclass::closeConnection() {
+    close(clientSock);
+}
+
 int serverclass::receive() {
     // Clear the buffer
     memset(buf, 0, 4096);

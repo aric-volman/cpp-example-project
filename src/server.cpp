@@ -70,6 +70,6 @@ int main (int argc, char *argv[]) {
     }
 
     // Close the socket when we're done
-    close(server.getClientSock());
+    server.closeConnection();
     return 0;
 }

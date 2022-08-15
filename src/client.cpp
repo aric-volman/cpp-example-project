@@ -46,7 +46,7 @@ int main (int argc, char *argv[]) {
     } while (true);
 
     // Close the socket when we're done
-    close(client.getSock());
+    client.closeConnection();
 
     return 0;
 }

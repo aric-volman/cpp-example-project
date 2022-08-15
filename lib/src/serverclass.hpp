@@ -14,6 +14,7 @@ class serverclass {
         int receive();
         int getListeningSock();
         int getClientSock();
+        void closeConnection();
         char* getBuf();
         int getBytes();
 };
