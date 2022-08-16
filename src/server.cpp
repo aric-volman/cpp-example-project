@@ -16,16 +16,29 @@
 
 int main (int argc, char *argv[]) {
 
-    if (argc != 3) {
-        throw std::range_error("Not enough args");
+    int port;
+    std::string ipaddr;
+    
+    try {
+        port = std::stoi(argv[1]);
+        ipaddr = std::string(argv[2]);
+        if (argc != 3) {
+            throw std::runtime_error("Server not given enough arguments");
+        }
+    } catch (std::invalid_argument ret) {
+        std::cerr << ret.what() << " returned with errno -1\n";
+        return -1;
+    } catch (std::out_of_range ret) {
+        std::cerr << ret.what() << " returned with errno -1\n";
+        return -1;
+    } catch (std::runtime_error ret) {
+        std::cerr << ret.what() << " with errno -1\n";
+        return -1;
     }
-
-    int port = std::stoi(std::string(argv[1]));
-    std::string ipaddr = std::string(argv[2]);
 
     serverclass server = serverclass(port, ipaddr);
 
-    // Initialize custom message
+    // Initialize message
     std::string messageToSendBack = "recieved.";
     try {
         server.listenAndConnect();

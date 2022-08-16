@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Aug 15 16:32:27 2022
+# Make data base, printed on Mon Aug 15 17:07:17 2022
 
 # Variables
 
@@ -101,7 +101,7 @@ MAKEFILE_LIST := makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 7254
+VSCODE_PID = 9890
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
@@ -277,6 +277,7 @@ KDE_SESSION_VERSION = 5
 # makefile (from 'makefile', line 1)
 CC := clang++
 # environment
+ 
 KDE_FULL_SESSION = true
 # environment
 LC_IDENTIFICATION = en_US.UTF-8
@@ -397,6 +398,6 @@ makefile:
 # strcache performance: lookups = 31 / hit rate = 41%
 # hash-table stats:
 # Load=18/8192=0%, Rehash=0, Collisions=0/31=0%
-# Finished Make data base on Mon Aug 15 16:32:27 2022
+# Finished Make data base on Mon Aug 15 17:07:17 2022
 
  

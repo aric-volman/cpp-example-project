@@ -14,7 +14,27 @@
 #include "../lib/src/clientclass.hpp"
 
 int main (int argc, char *argv[]) {
-    clientclass client = clientclass(std::stoi(std::string(argv[1])), std::string(argv[2]));
+    int port;
+    std::string ipaddr;
+    
+    try {
+        port = std::stoi(argv[1]);
+        ipaddr = std::string(argv[2]);
+        if (argc != 3) {
+            throw std::runtime_error("Client not given enough arguments");
+        }
+    } catch (std::invalid_argument ret) {
+        std::cerr << ret.what() << " returned with errno -1\n";
+        return -1;
+    } catch (std::out_of_range ret) {
+        std::cerr << ret.what() << " returned with errno -1\n";
+        return -1;
+    } catch (std::runtime_error ret) {
+        std::cerr << ret.what() << " with errno -1\n";
+        return -1;
+    }
+
+    clientclass client = clientclass(port, ipaddr);
     
     // Connect to server
     try {
