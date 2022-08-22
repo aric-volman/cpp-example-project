@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Aug 15 17:07:17 2022
+# Make data base, printed on Sun Aug 21 19:17:03 2022
 
 # Variables
 
@@ -59,9 +59,9 @@ XDG_DATA_DIRS = /home/aric/.local/share/flatpak/exports/share:/var/lib/flatpak/e
 # automatic
 %F = $(notdir $%)
 # environment
-VSCODE_CODE_CACHE_PATH = /home/aric/.config/Code/CachedData/6d9b74a70ca9c7733b29f0456fd8195364076dda
+VSCODE_CODE_CACHE_PATH = /home/aric/.config/Code/CachedData/e4503b30fc78200f846c62cf8091b76ff5547662
 # environment
-XDG_SESSION_PATH = /org/freedesktop/DisplayManager/Session1
+XDG_SESSION_PATH = /org/freedesktop/DisplayManager/Session2
 # environment
 CSF_ShadersDirectory = /usr/share/opencascade/resources/Shaders
 # environment
@@ -101,7 +101,7 @@ MAKEFILE_LIST := makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 9890
+VSCODE_PID = 2754
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
@@ -111,7 +111,7 @@ CSF_XSMessage = /usr/share/opencascade/resources/XSMessage
 # environment
 DRAWDEFAULT = /usr/share/opencascade/resources/DrawResources/DrawDefault
 # environment
-SESSION_MANAGER = local/aric-ms7b87:@/tmp/.ICE-unix/694,unix/aric-ms7b87:/tmp/.ICE-unix/694
+SESSION_MANAGER = local/aric-ms7b87:@/tmp/.ICE-unix/700,unix/aric-ms7b87:/tmp/.ICE-unix/700
 # automatic
 *F = $(notdir $*)
 # environment
@@ -159,7 +159,7 @@ MOTD_SHOWN = pam
 # environment
 LC_TIME = en_US.UTF-8
 # environment
-INVOCATION_ID = 4b34588bf41e415baa8b79a5ebca120c
+INVOCATION_ID = 42afa27638b74a34bffcc9de58e3bf80
 # environment
 CSF_StandardLiteDefaults = /usr/share/opencascade/resources/StdResource
 # environment
@@ -201,7 +201,7 @@ XDG_VTNR = 1
 # makefile
 .DEFAULT_GOAL := all
 # environment
-SYSTEMD_EXEC_PID = 730
+SYSTEMD_EXEC_PID = 745
 # makefile (from 'makefile', line 2)
 RM := rm
 # environment
@@ -219,7 +219,7 @@ MAKE_VERSION := 4.3
 # environment
 KDE_SESSION_UID = 1000
 # environment
-MANAGERPID = 622
+MANAGERPID = 628
 # environment
 LC_MEASUREMENT = en_US.UTF-8
 # environment
@@ -235,7 +235,7 @@ CSF_DrawPluginDefaults = /usr/share/opencascade/resources/DrawResources
 # environment
 CSF_IGESDefaults = /usr/share/opencascade/resources/XSTEPResource
 # environment
-JOURNAL_STREAM = 8:23753
+JOURNAL_STREAM = 8:23968
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -249,7 +249,7 @@ ELECTRON_RUN_AS_NODE = 1
 # environment
 DRAWHOME = /usr/share/opencascade/resources/DrawResources
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-91208303-1.70.1-main.sock
+VSCODE_IPC_HOOK = /run/user/1000/vscode-91208303-1.70.2-main.sock
 # environment
 XDG_SESSION_ID = 2
 # environment
@@ -277,7 +277,6 @@ KDE_SESSION_VERSION = 5
 # makefile (from 'makefile', line 1)
 CC := clang++
 # environment
- 
 KDE_FULL_SESSION = true
 # environment
 LC_IDENTIFICATION = en_US.UTF-8
@@ -398,6 +397,6 @@ makefile:
 # strcache performance: lookups = 31 / hit rate = 41%
 # hash-table stats:
 # Load=18/8192=0%, Rehash=0, Collisions=0/31=0%
-# Finished Make data base on Mon Aug 15 17:07:17 2022
+# Finished Make data base on Sun Aug 21 19:17:03 2022
 
  

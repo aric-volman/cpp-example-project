@@ -1,20 +1,18 @@
 #include <string>
+static constexpr int MAX_BUF_SIZE = 4096;
 
 class serverclass {
     private:
         int listeningSock;
         int clientSock;
         int port;
-        char buf[4096];
+        char buf[MAX_BUF_SIZE];
         int bytes;
         std::string ipaddr;
     public:
         serverclass(int port, std::string ipaddr);
-        int listenAndConnect();
-        int receive();
-        int getListeningSock();
-        int getClientSock();
+        std::string receive();
         void closeConnection();
-        char* getBuf();
-        int getBytes();
+        void listenAndConnect();
+        void sendToClient(std::string message);
 };

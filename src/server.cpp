@@ -20,15 +20,12 @@ int main (int argc, char *argv[]) {
     std::string ipaddr;
     
     try {
-        port = std::stoi(argv[1]);
-        ipaddr = std::string(argv[2]);
         if (argc != 3) {
             throw std::runtime_error("Server not given enough arguments");
         }
+        port = std::stoi(argv[1]);
+        ipaddr = std::string(argv[2]);
     } catch (std::invalid_argument ret) {
-        std::cerr << ret.what() << " returned with errno -1\n";
-        return -1;
-    } catch (std::out_of_range ret) {
         std::cerr << ret.what() << " returned with errno -1\n";
         return -1;
     } catch (std::runtime_error ret) {
@@ -38,48 +35,37 @@ int main (int argc, char *argv[]) {
 
     serverclass server = serverclass(port, ipaddr);
 
-    // Initialize message
-    std::string messageToSendBack = "recieved.";
-    try {
-        server.listenAndConnect();
-    } catch (std::runtime_error ret) {
-        std::cerr << ret.what() << " with errno -1\n";
-        return -1;
-    }
-
     // Display message
 
     while(true) {
+        std::string received;
         // Wait for the message & display
         try {
-            server.receive();
+            server.listenAndConnect();
         } catch (std::runtime_error ret) {
             std::cerr << ret.what() << " with errno -1\n";
+            break; // Exits loop and program
         }
-        if (server.getBytes() == 0 || server.getBytes() == -1) {
-            while (true) {
-                // Close current socket
-                close(server.getClientSock());
-                // Connect back
-                try {
-                    int e = server.listenAndConnect();
-                    if (e == 0) {break;};
-                } catch (std::runtime_error ret) {
-                    std::cerr << ret.what() << " with errno -1\n";
-                    break;
-                }
-            }
-        } else if (!(server.getBytes() == 0 || server.getBytes() == -1)) {
-            std::string recieved = std::string(server.getBuf(), 0, server.getBytes());
-            
-            if ((recieved == "Quit") || (recieved == "quit")) {
-                std::cout << "Quit recieved, closing...\r\n";
-                break;
-            }
-            std::cout << "Received from server: " << recieved << "\r\n";
-            // Send back the message
-            send(server.getClientSock(), messageToSendBack.c_str(), messageToSendBack.size() + 1, 0);
+
+        try {
+            received = server.receive();
+        } catch (std::runtime_error ret) {
+            // Does not exit and continues
+            std::cerr << ret.what() << " with errno -1\n";
         }
+
+
+        if ((received == "Quit") || (received == "quit")) {
+            std::cout << "Quit recieved, closing...\r\n";
+            break;
+        }
+
+        if (received != "") {
+            std::cout << "Received from server: " << received << "\r\n";
+        }
+        
+        // Send back the message
+        server.sendToClient("received.");
     }
 
     // Close the socket when we're done

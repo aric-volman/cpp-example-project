@@ -18,23 +18,11 @@ clientclass::clientclass(int port, std::string ipaddr) {
     this->ipaddr = ipaddr;
 };
 
-int clientclass::getSock() {
-    return sock;
-}
-
-int clientclass::getBytes() {
-    return bytes;
-}
-
-char* clientclass::getBuf() {
-    return buf;
-}
-
 void clientclass::closeConnection() {
     close(sock);
 }
 
-void clientclass::receive() {
+std::string clientclass::receive() {
     // Clear the buffer
     memset(buf, 0, 4096);
     bytes = recv(sock, buf, 4096, 0);
@@ -44,6 +32,7 @@ void clientclass::receive() {
     if (bytes == 0) {
         throw std::runtime_error("Server disconnected");
     }
+    return std::string(buf, bytes);
 }
 
 void clientclass::sendToServer(std::string input) {
