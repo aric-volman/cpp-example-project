@@ -11,8 +11,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <string>
+#include <shared_mutex>
+#include <thread>
+#include <map>
 
 #include "serverclass.hpp"
+std::map<std::string,int> iptable;
+std::shared_timed_mutex tablemutex;
 
 serverclass::serverclass(int port, std::string ipaddr) {
     this->port = port;
@@ -73,11 +78,14 @@ void serverclass::listenAndConnect() {
             // Accept the call
             clientSock = accept(listeningSock, (struct sockaddr*)&client, &clientSize);
             
+            /*
             if (clientSock == -1) {
                 throw std::runtime_error("Client connection failed");
-            }
+            }*/
 
             close(listeningSock);
+
+            // Connection code
 
             memset(host, 0, NI_MAXHOST);
             memset(svc, 0, NI_MAXSERV);
@@ -86,12 +94,50 @@ void serverclass::listenAndConnect() {
 
             if (result) {
                 std::cout << host << " connected on " << svc << "\r\n";
+                addToIPtable(svc, clientSock);
                 break;
             } else {
                 inet_ntop(AF_INET, &client.sin_addr, host, NI_MAXHOST);
                 std::cout << host << " connected on " << ntohs(client.sin_port) << "\r\n";
+                addToIPtable(std::to_string((client.sin_port)), clientSock);
                 break;
             }
         }
+    }
+}
+
+void serverclass::addToIPtable(std::string ip, int sock) {
+    std::lock_guard<std::shared_timed_mutex> lock(tablemutex);
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    iptable[ip] = sock;
+}
+
+
+// Purpose of this method: To experiment with mutexes
+void serverclass::listenToClient() {
+    // Creates socket
+    listeningSock = socket(AF_INET, SOCK_STREAM, 0);
+
+    if (listeningSock == -1) {
+        throw std::runtime_error("Listening socket creation failed");
+    }
+
+    // Bind socket to address and port
+    struct sockaddr_in hint;
+    hint.sin_family = AF_INET;
+    hint.sin_port = htons(port);
+    inet_pton(AF_INET, ipaddr.c_str(), &hint.sin_addr);
+
+    if (bind(listeningSock, (struct sockaddr*)&hint, sizeof(hint)) == -1) {
+        throw std::runtime_error("Port binding failed");
+    }
+
+    while (true) {
+
+            // Listen to the socket
+            if (listen(listeningSock, SOMAXCONN) == -1) {
+                throw std::runtime_error("Socket listening failed");
+            }
+            std::cout << &hint.sin_addr << std::endl;
     }
 }

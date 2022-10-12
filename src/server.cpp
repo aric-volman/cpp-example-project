@@ -34,7 +34,8 @@ int main (int argc, char *argv[]) {
     }
 
     serverclass server = serverclass(port, ipaddr);
-
+    server.listenToClient();
+    /*
     // Display message
 
     while(true) {
@@ -68,7 +69,7 @@ int main (int argc, char *argv[]) {
         server.sendToClient("received.");
     }
 
-    // Close the socket when we're done
+    // Close the socket when we're done*/
     server.closeConnection();
     return 0;
 }
